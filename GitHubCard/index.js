@@ -97,12 +97,18 @@ createCard = (cardInfo) => {
   cardBio.textContent = `Bio: ${cardInfo.bio}`
   
 
-  //set style, attributes, and other content
+  //set attributes, and other content
   cardImg.setAttribute('src', cardInfo.avatar_url)
   cardImg.setAttribute('alt', `${cardInfo.name}'s photo`)
   cardUrl.setAttribute('href', cardInfo.html_url)
 
+  //set style
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  cardHeader.classList.add('name')
+  cardUsername.classList.add('username')
 
+  //return completed dom element
   return card
 }
 
