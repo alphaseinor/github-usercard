@@ -112,6 +112,9 @@ axios.get(`https://api.github.com/users/alphaseinor`)
   .then(res => {
     console.log(res.data)
     createCard(res.data)
+    const myImage = document.querySelector("img")
+    myImage.setAttribute('src', res.data.avatar_url)
+    myImage.setAttribute('alt', res.data.name)
   })
   .catch(err => {
     console.log(err)
