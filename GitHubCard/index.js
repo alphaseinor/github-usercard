@@ -3,16 +3,7 @@
            https://api.github.com/users/<your name>
 */
 
-axios.get(`https://api.github.com/users/alphaseinor`)
-  .then(res => {
-    console.log(res.data)
-  })
-  .catch(err => {
-    console.log(err)
-  })
-  .finally(x => {
-    console.log(`now deal wit' it!`)
-  })
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -26,6 +17,7 @@ axios.get(`https://api.github.com/users/alphaseinor`)
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -61,33 +53,34 @@ const followersArray = [];
 
 createCard = (cardInfo) => {
   //create elements
+  console.log(cardInfo.avatar_url)
   card = document.createElement('div')
   cardImg = document.createElement('img')
-  cardInfo = document.createElement('div')
+  cardInner = document.createElement('div')
   cardHeader = document.createElement('h3')
   cardUsername = document.createElement('p')
   cardLocation = document.createElement('p')
   cardProfile = document.createElement('p')
-  cardUrl = document.createElement('a')
+  cardUrl = document.createElement('img')
   cardFollowers = document.createElement('p')
   cardFollowing = document.createElement('p')
   cardBio = document.createElement('p')
 
   //create structure
-  cardInfo.appendChild(cardHeader)
-  cardInfo.appendChild(cardUsername)
-  cardInfo.appendChild(cardLocation)
-  cardProfile.appendChild(cardUrl)
-  cardInfo.appendChild(cardProfile)
-  cardInfo.appendChild(cardFollowers)
-  cardInfo.appendChild(cardFollowers)
-  cardInfo.appendChild(cardFollowing)
-  cardInfo.appendChild(cardBio)
+  cardInner.appendChild(cardHeader)
+  cardInner.appendChild(cardUsername)
+  cardInner.appendChild(cardLocation)
+  cardInner.appendChild(cardProfile)
+  cardInner.appendChild(cardFollowers)
+  cardInner.appendChild(cardFollowers)
+  cardInner.appendChild(cardFollowing)
+  cardInner.appendChild(cardBio)
   card.appendChild(cardImg)
-  card.appendChild(cardInfo)
+  card.appendChild(cardInner)
 
   //set content
   cardHeader.textContent = cardInfo.name
+  console.log(cardInfo.name)
   cardUsername.textContent = cardInfo.login
   cardLocation.textContent = `Location: ${cardInfo.location}`
   cardProfile.textContent = "Profile: "
@@ -104,13 +97,27 @@ createCard = (cardInfo) => {
 
   //set style
   card.classList.add('card')
-  cardInfo.classList.add('card-info')
+  cardInner.classList.add('card-info')
   cardHeader.classList.add('name')
   cardUsername.classList.add('username')
 
   //return completed dom element
-  return card
+  const cards = document.querySelector('.cards')
+  cards.appendChild(card)
 }
+
+
+const myCard = axios.get(`https://api.github.com/users/alphaseinor`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
 
 /* List of LS Instructors Github username's: 
   tetondan
