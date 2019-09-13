@@ -68,6 +68,7 @@ createCard = (cardInfo) => {
   cardUsername = document.createElement('p')
   cardLocation = document.createElement('p')
   cardProfile = document.createElement('p')
+  cardUrl = document.createElement('a')
   cardFollowers = document.createElement('p')
   cardFollowing = document.createElement('p')
   cardBio = document.createElement('p')
@@ -76,6 +77,7 @@ createCard = (cardInfo) => {
   cardInfo.appendChild(cardHeader)
   cardInfo.appendChild(cardUsername)
   cardInfo.appendChild(cardLocation)
+  cardProfile.appendChild(cardUrl)
   cardInfo.appendChild(cardProfile)
   cardInfo.appendChild(cardFollowers)
   cardInfo.appendChild(cardFollowers)
@@ -85,9 +87,20 @@ createCard = (cardInfo) => {
   card.appendChild(cardInfo)
 
   //set content
+  cardHeader.textContent = cardInfo.name
+  cardUsername.textContent = cardInfo.login
+  cardLocation.textContent = `Location: ${cardInfo.location}`
+  cardProfile.textContent = "Profile: "
+  cardUrl.textContent = cardInfo.html_url
+  cardFollowers.textContent = `Followers: ${cardInfo.followers}`
+  cardFollowing.textContent = `Following: ${cardInfo.following}`
+  cardBio.textContent = `Bio: ${cardInfo.bio}`
+  
 
-
-  //set style
+  //set style, attributes, and other content
+  cardImg.setAttribute('src', cardInfo.avatar_url)
+  cardImg.setAttribute('alt', `${cardInfo.name}'s photo`)
+  cardUrl.setAttribute('href', cardInfo.html_url)
 
 
   return card
