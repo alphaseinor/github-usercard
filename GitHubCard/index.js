@@ -5,7 +5,7 @@
 
 axios.get(`https://api.github.com/users/alphaseinor`)
   .then(res => {
-    console.log(res)
+    console.log(res.data)
   })
   .catch(err => {
     console.log(err)
@@ -20,6 +20,8 @@ axios.get(`https://api.github.com/users/alphaseinor`)
 
    Skip to Step 3.
 */
+
+//yes, it's my data!
 
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
@@ -56,6 +58,40 @@ const followersArray = [];
 </div>
 
 */
+
+createCard = (cardInfo) => {
+  //create elements
+  card = document.createElement('div')
+  cardImg = document.createElement('img')
+  cardInfo = document.createElement('div')
+  cardHeader = document.createElement('h3')
+  cardUsername = document.createElement('p')
+  cardLocation = document.createElement('p')
+  cardProfile = document.createElement('p')
+  cardFollowers = document.createElement('p')
+  cardFollowing = document.createElement('p')
+  cardBio = document.createElement('p')
+
+  //create structure
+  cardInfo.appendChild(cardHeader)
+  cardInfo.appendChild(cardUsername)
+  cardInfo.appendChild(cardLocation)
+  cardInfo.appendChild(cardProfile)
+  cardInfo.appendChild(cardFollowers)
+  cardInfo.appendChild(cardFollowers)
+  cardInfo.appendChild(cardFollowing)
+  cardInfo.appendChild(cardBio)
+  card.appendChild(cardImg)
+  card.appendChild(cardInfo)
+
+  //set content
+
+
+  //set style
+
+
+  return card
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
