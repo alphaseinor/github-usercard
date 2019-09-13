@@ -61,7 +61,7 @@ createCard = (cardInfo) => {
   cardUsername = document.createElement('p')
   cardLocation = document.createElement('p')
   cardProfile = document.createElement('p')
-  cardUrl = document.createElement('img')
+  cardUrl = document.createElement('a')
   cardFollowers = document.createElement('p')
   cardFollowing = document.createElement('p')
   cardBio = document.createElement('p')
@@ -83,7 +83,8 @@ createCard = (cardInfo) => {
   console.log(cardInfo.name)
   cardUsername.textContent = cardInfo.login
   cardLocation.textContent = `Location: ${cardInfo.location}`
-  cardProfile.textContent = "Profile: "
+  cardProfile.textContent = `Profile: `
+  cardProfile.appendChild(cardUrl)
   cardUrl.textContent = cardInfo.html_url
   cardFollowers.textContent = `Followers: ${cardInfo.followers}`
   cardFollowing.textContent = `Following: ${cardInfo.following}`
@@ -107,7 +108,67 @@ createCard = (cardInfo) => {
 }
 
 
-const myCard = axios.get(`https://api.github.com/users/alphaseinor`)
+axios.get(`https://api.github.com/users/alphaseinor`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/tetondan`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/dustinmyers`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/justsml`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/luishrd`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/bigknell`)
   .then(res => {
     console.log(res.data)
     createCard(res.data)
