@@ -3,6 +3,8 @@
            https://api.github.com/users/<your name>
 */
 
+
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -10,9 +12,12 @@
    Skip to Step 3.
 */
 
+//yes, it's my data!
+
 /* Step 4: Pass the data received from Github into your function, 
            create a new component and add it to the DOM as a child of .cards
 */
+
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
           follow this link in your browser https://api.github.com/users/<Your github name>/followers 
@@ -45,6 +50,138 @@ const followersArray = [];
 </div>
 
 */
+
+createCard = (cardInfo) => {
+  //create elements
+  console.log(cardInfo.avatar_url)
+  card = document.createElement('div')
+  cardImg = document.createElement('img')
+  cardInner = document.createElement('div')
+  cardHeader = document.createElement('h3')
+  cardUsername = document.createElement('p')
+  cardLocation = document.createElement('p')
+  cardProfile = document.createElement('p')
+  cardUrl = document.createElement('a')
+  cardFollowers = document.createElement('p')
+  cardFollowing = document.createElement('p')
+  cardBio = document.createElement('p')
+
+  //create structure
+  cardInner.appendChild(cardHeader)
+  cardInner.appendChild(cardUsername)
+  cardInner.appendChild(cardLocation)
+  cardInner.appendChild(cardProfile)
+  cardInner.appendChild(cardFollowers)
+  cardInner.appendChild(cardFollowers)
+  cardInner.appendChild(cardFollowing)
+  cardInner.appendChild(cardBio)
+  card.appendChild(cardImg)
+  card.appendChild(cardInner)
+
+  //set content
+  cardHeader.textContent = cardInfo.name
+  console.log(cardInfo.name)
+  cardUsername.textContent = cardInfo.login
+  cardLocation.textContent = `Location: ${cardInfo.location}`
+  cardProfile.textContent = `Profile: `
+  cardProfile.appendChild(cardUrl)
+  cardUrl.textContent = cardInfo.html_url
+  cardFollowers.textContent = `Followers: ${cardInfo.followers}`
+  cardFollowing.textContent = `Following: ${cardInfo.following}`
+  cardBio.textContent = `Bio: ${cardInfo.bio}`
+  
+
+  //set attributes, and other content
+  cardImg.setAttribute('src', cardInfo.avatar_url)
+  cardImg.setAttribute('alt', `${cardInfo.name}'s photo`)
+  cardUrl.setAttribute('href', cardInfo.html_url)
+
+  //set style
+  card.classList.add('card')
+  cardInner.classList.add('card-info')
+  cardHeader.classList.add('name')
+  cardUsername.classList.add('username')
+
+  //return completed dom element
+  const cards = document.querySelector('.cards')
+  cards.appendChild(card)
+}
+
+
+axios.get(`https://api.github.com/users/alphaseinor`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+    const myImage = document.querySelector("img")
+    myImage.setAttribute('src', res.data.avatar_url)
+    myImage.setAttribute('alt', res.data.name)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/tetondan`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/dustinmyers`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/justsml`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/luishrd`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
+
+axios.get(`https://api.github.com/users/bigknell`)
+  .then(res => {
+    console.log(res.data)
+    createCard(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+  .finally(x => {
+    console.log(`now deal wit' it!`)
+  })
 
 /* List of LS Instructors Github username's: 
   tetondan
